@@ -51,16 +51,17 @@ omc = OMCSessionZMQ()
 
 
 # omc.sendExpression("loadModel(Modelica)")
-omc.sendExpression("loadFile(\"BuckVoltage.mo\")")
+omc.sendExpression("loadFile(\"ModelicaFiles/BuckVoltage.mo\")")
 # omc.sendExpression("getClassNames()")
 omc.sendExpression("instantiateModel(BuckVoltage)")
-omc.sendExpression("getClassNames()")
 
 
 #%%
-omc.sendExpression("loadFile(\"/usr/share/doc/omc/testmodels/BouncingBall.mo\")")
-omc.sendExpression("instantiateModel(BouncingBall)")
-# omc.sendExpression("loadFile(getInstallationDirectoryPath() + \"/usr/share/doc/omc/testmodels/BouncingBall.mo\")")
+omc.sendExpression("simulate(BuckVoltage, stopTime=15e-3)")
+
+#%%
+
+omc.sendExpression("plot(Rload1.v)")
+
 
 # %%
-/usr/share/doc/omc/testmodels

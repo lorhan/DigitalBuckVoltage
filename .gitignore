@@ -1,0 +1,6 @@
+ModelicaFiles/BuckVoltage_*
+ModelicaFiles/*.c
+ModelicaFiles/*.libs
+ModelicaFiles/*.log
+ModelicaFiles/*.makefile
+ModelicaFiles/*.o
