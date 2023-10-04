@@ -57,7 +57,10 @@ os.chdir("ModelicaFiles/")
 mod=ModelicaSystem('BuckVoltage.mo',"BuckVoltage")
 
 #%%
-mod.setParameters("vref.k=10")
+
+# to see the parameters available: print(mod.getParameters())
+mod.setParameters("tf.a[1] = 2")
+mod.setParameters("vref.k=15")
 mod.setSimulationOptions(["stopTime=10e-3"])
 mod.simulate()
 
@@ -65,3 +68,5 @@ mod.simulate()
 
 L_i, C_v = mod.getSolutions(["L.i","C.v"])
 plt.plot(C_v)
+
+# %%
