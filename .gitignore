@@ -4,3 +4,4 @@ ModelicaFiles/*.libs
 ModelicaFiles/*.log
 ModelicaFiles/*.makefile
 ModelicaFiles/*.o
+ModelicaFiles/BuckVoltage

@@ -27,7 +27,7 @@ model BuckVoltage
     Placement(visible = true, transformation(origin = {-34, 46}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.RealExpression realExpression(y = Rload1.v) annotation(
     Placement(visible = true, transformation(origin = {-77, 43}, extent = {{-9, -9}, {9, 9}}, rotation = 0)));
-  Modelica.Blocks.Sources.Constant const(k = 15) annotation(
+  Modelica.Blocks.Sources.Constant vref(k = 15) annotation(
     Placement(visible = true, transformation(origin = {-75, 59}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
 equation
   connect(Rload1.n, C.n) annotation(
@@ -58,7 +58,7 @@ equation
     Line(points = {{36, 30}, {50, 30}}, color = {0, 0, 127}));
   connect(realExpression.y, add.u2) annotation(
     Line(points = {{-67, 43}, {-42, 43}, {-42, 42}}, color = {0, 0, 127}));
-  connect(const.y, add.u1) annotation(
+  connect(vref.y, add.u1) annotation(
     Line(points = {{-70, 60}, {-50, 60}, {-50, 50}, {-42, 50}}, color = {0, 0, 127}));
   connect(greater.y, s1.control) annotation(
     Line(points = {{64, 36}, {78, 36}, {78, 18}, {-6, 18}, {-6, 34}, {-36, 34}, {-36, 12}, {-28, 12}}, color = {255, 0, 255}));

@@ -38,30 +38,30 @@ k = 1/np.abs(Gc_at_fc)
 kc = k*wz/kboost
 print(kc)
 
-#%%
 
-
-from OMPython import OMCSessionZMQ
-omc = OMCSessionZMQ()
-
-
-# omc.sendExpression("getVersion()")
-
-# omc.sendExpression("cd()")
-
-
-# omc.sendExpression("loadModel(Modelica)")
-omc.sendExpression("loadFile(\"ModelicaFiles/BuckVoltage.mo\")")
-# omc.sendExpression("getClassNames()")
-omc.sendExpression("instantiateModel(BuckVoltage)")
 
 
 #%%
-omc.sendExpression("simulate(BuckVoltage, stopTime=15e-3)")
+# =============================================================================
+# CONTROLLING MODELICA WITH PYTHON
+# =============================================================================
+
+from OMPython import ModelicaSystem
+import matplotlib.pyplot as plt
+import os
+
+
+# Change the working directory so that the output files will be placed in this new directory and not pollute the directory we want to keep clean
+os.chdir("ModelicaFiles/")
+
+mod=ModelicaSystem('BuckVoltage.mo',"BuckVoltage")
+
+#%%
+mod.setParameters("vref.k=10")
+mod.setSimulationOptions(["stopTime=10e-3"])
+mod.simulate()
 
 #%%
 
-omc.sendExpression("plot(Rload1.v)")
-
-
-# %%
+L_i, C_v = mod.getSolutions(["L.i","C.v"])
+plt.plot(C_v)
